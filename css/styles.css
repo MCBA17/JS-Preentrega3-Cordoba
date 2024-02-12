@@ -1,0 +1,30 @@
+.index{
+    background-image: url("../assets/media/bg0.jpg");
+    background-size: cover;
+}
+
+.nav{
+    background-color:rgb(22, 22, 22);
+    padding: 30px;
+    border-bottom: 3px solid white;
+}
+
+.nav-item{
+    padding: 10px;
+}
+
+ul{
+    font-size: 20px;
+}
+
+.center{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.title{
+    margin-top: 12rem;
+    color: white;
+    font-size: 4rem;
+}
