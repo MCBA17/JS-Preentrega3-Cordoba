@@ -12,9 +12,8 @@ function register() {
 
 function login() {
     let userlogin, passlogin;
-    let intentosMaximos = 3;
 
-    for (let intento = 1; intento <= intentosMaximos; intento++) {
+    for (let i = 1; i <= 3; i++) {
         userlogin = prompt("Ingresa tu nombre de usuario: ");
         passlogin = prompt("Ingresa tu contraseña: ");
 
@@ -22,7 +21,7 @@ function login() {
             alert("Sesión iniciada");
             return;
         } else {
-            alert(`Los datos ingresados son incorrectos. Intento ${intento} de ${intentosMaximos}`);
+            alert("Los datos ingresados son incorrectos. Intento ${i} de 3");
         }
     }
 
