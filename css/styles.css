@@ -1,3 +1,10 @@
+body{
+    margin:0;
+    height: 100%;
+    padding: 0px;
+    overflow: hidden;
+}
+
 .index{
     background-image: url("../assets/media/bg0.jpg");
     background-size: cover;
@@ -17,14 +24,24 @@ ul{
     font-size: 20px;
 }
 
-.center{
+.container{
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
+    height: 100vh;
 }
 
 .title{
-    margin-top: 12rem;
     color: white;
     font-size: 4rem;
+    margin-top: 20rem
+}
+
+.btn-danger{
+    color: white;
+    padding: 1.5rem;
+    margin: 40px;
+    font-size: 1.7rem;
+    padding-right: 3rem;
+    padding-left: 3rem
 }
