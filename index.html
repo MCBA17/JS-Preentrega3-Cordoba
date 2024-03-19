@@ -12,6 +12,10 @@
     <link rel="stylesheet" href="./css/styles.css">
     <header>
 
+        <nav class="navbar">
+            <a class="navbar-brand" href="../index.html">
+              <img class="nav-ico" src="../assets/media/logo.png" alt="Logo Principal">
+            </a>
         <ul class="nav justify-content-end">
             <li class="nav-item">
                 <button class="btn btn-outline-primary btn-lg" aria-current="page" onclick="register()">Registrarse</button>
@@ -22,7 +26,8 @@
             <li class="nav-item">
                 <button class="btn btn-outline-warning btn-lg" aria-current="page" onclick="data()">Ver Datos Guardados</button>
             </li>
-        </ul>        
+        </ul>
+        </nav>
 
     </header>
     
@@ -30,7 +35,7 @@
         <div class="container">
         <h1 class="title">Bienvenido/a</h1>
         <br>
-        <button type="button" class="btn btn-danger" onclick="Tienda()">Tienda</button>
+        <a href="./templates/tienda.html" class="btn btn-danger">Tienda</a>
         </div>
     </main>
 </body>
