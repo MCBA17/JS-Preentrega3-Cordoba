@@ -45,7 +45,7 @@ class Videojuego {
 
 class Carrito {
     constructor() {
-        this.items = [];
+        this.items = JSON.parse(localStorage.getItem('carrito')) || [];
     }
 
     agregarAlCarrito(videojuego) {
@@ -53,6 +53,7 @@ class Carrito {
 
         if (index === -1) {
             this.items.push({ juego: videojuego });
+            this.guardarCarrito();
             alert(`${videojuego.titulo} agregado al carrito.`);
         } else {
             alert(`${videojuego.titulo} ya está en el carrito.`);
@@ -78,11 +79,48 @@ class Carrito {
         if (confirmacion) {
             alert('¡Compra realizada con éxito!');
             this.items = [];
+            this.guardarCarrito();
+        } else {
+            alert('Compra cancelada.');
+        }
+    }
+
+    guardarCarrito() {
+        localStorage.setItem('carrito', JSON.stringify(this.items));
+    }
+
+    borrarCarrito() {
+        const confirmacion = confirm('¿Está seguro que desea borrar el carrito?');
+
+        if (confirmacion) {
+            localStorage.removeItem('carrito');
+            alert('Carrito borrado con éxito.');
+        }
+    }
+
+    realizarCompra() {
+        const confirmacion = confirm('¿Desea realizar la compra?');
+
+        if (confirmacion) {
+            localStorage.removeItem('carrito');
+            alert('¡Compra realizada con éxito!');
         } else {
             alert('Compra cancelada.');
         }
     }
 }
+
+
+function borrarCarrito() {
+    carrito.borrarCarrito();
+    location.reload();
+}
+
+function realizarCompra() {
+    carrito.realizarCompra();
+    location.reload();
+}
+
 
 const catalogo = [
     new Videojuego('The Witcher 3', 'RPG', 29.99, "../assets/media/tw3.jpg"),
@@ -107,67 +145,6 @@ const catalogo = [
 ];
 
 const carrito = new Carrito();
-
-function Tienda() {
-    let salir = false;
-
-    while (!salir) {
-        const opcion = prompt(
-            'Seleccione una opción:\n' +
-            '1. Ver Catálogo\n' +
-            '2. Agregar al Carrito (por número o nombre)\n' +
-            '3. Ver Carrito\n' +
-            '4. Comprar\n' +
-            '5. Salir'
-        );
-
-        switch (opcion) {
-            case '1':
-                let catalogoInfo = 'Catálogo:\n\n';
-                catalogo.forEach((juego, index) => {
-                    catalogoInfo += `${index + 1}. ${juego.titulo} - ${juego.genero} - $${juego.precio.toFixed(2)}\n`;
-                });
-                alert(catalogoInfo);
-                break;
-
-            case '2':
-                const entradaJuego = prompt('Ingrese el número o nombre del juego que desea agregar al carrito:');
-
-                const esNumero = !isNaN(entradaJuego);
-                let juegoSeleccionado;
-
-                if (esNumero) {
-                    juegoSeleccionado = catalogo[entradaJuego - 1];
-                } else {
-                    juegoSeleccionado = catalogo.find(juego => juego.titulo.toLowerCase() === entradaJuego.toLowerCase());
-                }
-
-                if (juegoSeleccionado) {
-                    carrito.agregarAlCarrito(juegoSeleccionado);
-                } else {
-                    alert('Número o nombre de juego inválido.');
-                }
-                break;
-
-            case '3':
-                carrito.mostrarCarrito();
-                break;
-
-            case '4':
-                carrito.comprar();
-                salir = true;
-                break;
-                break;
-
-            case '5':
-                salir = true;
-                break;
-
-            default:
-                alert('Opción inválida.');
-        }
-    }
-}
 
 document.addEventListener("DOMContentLoaded", function() {
     const catalogoContainer = document.querySelector(".catalogo");
